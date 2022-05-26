@@ -9,7 +9,6 @@ from pydantic import EmailStr
 from pydantic import Field
 
 class Patient(BaseModel):
-    patient_id: int = Field(...)
     first_name: str = Field(
         ...,
         min_length=1,
