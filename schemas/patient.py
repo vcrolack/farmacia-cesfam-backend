@@ -1,6 +1,5 @@
 # Python
 from datetime import datetime, date
-from re import M
 from typing import Optional
 
 # Pydantic

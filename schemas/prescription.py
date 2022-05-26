@@ -1,10 +1,8 @@
 # Python
 from datetime import datetime, date
-from typing import Optional
 
 # Pydantic
 from pydantic import BaseModel
-from pydantic import EmailStr
 from pydantic import Field
 
 class Prescription(BaseModel):
@@ -29,4 +27,3 @@ class Prescription(BaseModel):
     date_prescription: date = Field(...)
     medicament_id: int = Field(...)
     type_medicament_id = Field(...)
-    
