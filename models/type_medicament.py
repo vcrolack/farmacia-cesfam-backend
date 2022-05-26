@@ -14,8 +14,9 @@ class TypeMedicament(Base):
     __tablename__ = "type_medicament"
 
     id = Column(Integer, primary_key=True, index=True)
-    type = Column(String(30))
+    type = Column(String(30), nullable=False)
     medicament = relationship("medicament")
+    prescription = relationship("type_medicament")
 
     def __repr__(self) -> str:
         return super().__repr__()
