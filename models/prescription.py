@@ -18,7 +18,7 @@ class Prescription(Base):
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey(User.id), nullable=False)
     patient_id = Column(Integer, ForeignKey("patient.id"), nullable=False)
-    medic_name = Column(String(30), nullable=False)
+    medic_name = Column(String(120), nullable=False)
     medicament_name = Column(String(30), nullable=False)
     patology = Column(String(30), nullable=False)
     created_at = Column(DateTime(), default=datetime.now(), nullable=False)
