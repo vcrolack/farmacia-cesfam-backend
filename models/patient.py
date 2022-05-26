@@ -8,6 +8,7 @@ from sqlalchemy import String, Integer, Date
 
 # Project imports
 from config.db import Base
+from config.db import engine
 
 class Patient(Base):
     __tablename__ = "patient"
@@ -27,3 +28,4 @@ class Patient(Base):
     def __repr__(self):
         return f"Patient:\nid:{self.id}\nfirst_name:{self.first_name}\nsecond_name:{self.second_name}\nlast_name:{self.last_name}\nsecond_last:{self.second_last_name}\nrut:{self.rut}\nbirth_date:{self.birth_date}\nphone:{self.phone}\nemail:{self.email}\nAddress:{self.address}"
 
+Base.metadata.create_all(engine)

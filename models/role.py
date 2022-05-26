@@ -6,6 +6,7 @@ from sqlalchemy import Integer, String
 
 # Project imports
 from config.db import Base
+from config.db import engine
 
 class Role(Base):
     __tablename__ = "role"
@@ -15,3 +16,5 @@ class Role(Base):
 
     def __repr__(self):
         return f"Role:\nid:{self.id}\nname:{self.name} "
+
+Base.metadata.create_all(engine)

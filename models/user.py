@@ -9,6 +9,8 @@ from sqlalchemy.orm import relationship
 
 # Project imports
 from config.db import Base
+from config.db import engine
+from models.role import Role
 
 class User(Base):
     __tablename__ = "user"
@@ -21,7 +23,7 @@ class User(Base):
     rut = Column(String(12), unique=True)
     email = Column(String(60), unique=True, nullable=False)
     created_at = Column(DateTime(), default=datetime.now())
-    role_id = Column(Integer, ForeignKey("role.id"), nullable=False)
+    role_id = Column(Integer, ForeignKey(Role.id), nullable=False)
     role = relationship("role")
     specialty_id = Column(String(30), nullable=True)
     specialty = relationship("specialty")
@@ -29,3 +31,5 @@ class User(Base):
 
     def __repr__(self):
         return f"User:\nname:{self.id}\nsecond name:{self.first_name}\nlast name:{self.last_name}\nsecond last name:{self.second_last_name}\nrut:{self.rut}\nemail:{self.email}\ncreated at:{self.created_at}\nrole id:{self.role_id}\nspecialty:{self.specialty_id}"
+
+Base.metadata.create_all(engine)

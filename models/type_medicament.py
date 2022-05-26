@@ -7,7 +7,8 @@ from sqlalchemy.orm import relationship
 
 # Project imports
 from config.db import Base
-
+from config.db import engine
+ 
 class TypeMedicament(Base):
     #Like ansiolitic, analgesic...
     __tablename__ = "type_medicament"
@@ -19,3 +20,4 @@ class TypeMedicament(Base):
     def __repr__(self) -> str:
         return super().__repr__()
     
+Base.metadata.create_all(engine)
