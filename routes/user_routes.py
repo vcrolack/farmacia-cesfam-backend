@@ -1,12 +1,12 @@
 # Python
-from typing import List
+from typing import List, Dict
 import json
 
 # FastAPI
 from fastapi import APIRouter
 from fastapi import Depends
 from fastapi import status
-from fastapi import Body, Path, Query
+from fastapi import Body, Path, Query, Form
 
 # Project imports
 from schemas.user_schema import UserBase, UserLogin, User
@@ -20,7 +20,7 @@ user_routes = APIRouter()
 @user_routes.get(
     path="/users",
     tags=["users"],
-    response_model = List[User],
+    #response_model = List[User],
     status_code=status.HTTP_200_OK,
     dependencies=[Depends(get_db)],
     summary="Get all users"
@@ -44,7 +44,7 @@ def get_users():
         - role_id: int
         - specialty_id: int
     """
-    return "Hello World"
+    return {"Helo": "world"}
 
 @user_routes.post(
     path="/users",
@@ -54,7 +54,7 @@ def get_users():
     dependencies=[Depends(get_db)],
     summary="Create a new user"
 )
-async def post_user(user: UserLogin = Body(...)):
+async def post_user(user: UserLogin):
     """Create a new user in the app.
 
     Args:
@@ -70,6 +70,7 @@ async def post_user(user: UserLogin = Body(...)):
     ###Returns:
         -user: User info
     """
+    print(type(user))
     return create_user(user)
 
 @user_routes.get("/users")
