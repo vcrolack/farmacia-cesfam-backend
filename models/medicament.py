@@ -3,6 +3,7 @@
 # SQLAlchemy
 from sqlalchemy import Column, ForeignKey
 from sqlalchemy import Date, String, Integer
+from sqlalchemy.orm import relationship
 
 # Project imports
 from config.db import Base
@@ -20,6 +21,7 @@ class Medicament(Base):
     stock = Column(Integer, nullable=False)
     format_medicament = Column(String(30), nullable=False)
     type_medicament_id = Column(Integer, ForeignKey(TypeMedicament.id), nullable=False)
+    type_of = relationship("TypeMedicament", back_populates="medicament")
     laboratory_name = Column(String(30), nullable=False)
     principal_agent = Column(String(30), nullable=False)
     secondary_agent = Column(String(30), nullable=False)
