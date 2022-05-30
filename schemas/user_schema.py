@@ -52,3 +52,15 @@ class UserLogin(User):
         min_length=6,
         max_length=25,
     )
+
+class UserLoginFront(BaseModel):
+    rut: str = Form(
+        ...,
+        min_length=8,
+        max_length=9
+    )
+    password: str = Form(
+        ...,
+        min_length=6,
+        max_length=25
+    )

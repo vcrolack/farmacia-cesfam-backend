@@ -51,3 +51,14 @@ def create_user(user: user_schema.UserLogin):
         role_id = db_user.role_id,
         specialty_id = db_user.specialty_id
     )
+
+def login_user(user: user_schema.UserLoginFront):
+    user = session.query(User).filter_by(rut=user.rut, password=user.password).first()
+    print(user)
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Username or password incorrect"
+        )
+
+    return user

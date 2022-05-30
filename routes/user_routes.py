@@ -9,9 +9,9 @@ from fastapi import status
 from fastapi import Body, Path, Query, Form
 
 # Project imports
-from schemas.user_schema import UserBase, UserLogin, User
+from schemas.user_schema import UserBase, UserLogin, User, UserLoginFront
 from config.db import get_db
-from services.user_service import create_user
+from services.user_service import create_user, login_user
 
 
 
@@ -73,9 +73,15 @@ async def post_user(user: UserLogin):
     print(type(user))
     return create_user(user)
 
-@user_routes.get("/users")
-def helloWorld():
-    return "Hello World"
+@user_routes.post(
+    path="/login",
+    tags=["users"],
+    status_code=status.HTTP_200_OK,
+    dependencies=[Depends(get_db)],
+    summary="Sign in in the app"
+)
+async def login(user: UserLoginFront):
+    return login_user(user)
 
 @user_routes.get("/users")
 def helloWorld():
