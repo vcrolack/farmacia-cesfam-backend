@@ -1,6 +1,6 @@
 # Python
 from datetime import datetime
-from typing import Optional
+from typing import Optional, List
 
 # FastAPI
 from fastapi import Form
@@ -52,6 +52,11 @@ class UserLogin(User):
         min_length=6,
         max_length=25,
     )
+
+class PaginatedUsersInfo(BaseModel):
+    limit: int
+    offset: int
+    data: Optional[User]
 
 class UserLoginFront(BaseModel):
     rut: str = Form(

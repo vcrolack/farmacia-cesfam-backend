@@ -9,9 +9,9 @@ from fastapi import status
 from fastapi import Body, Path, Query, Form
 
 # Project imports
-from schemas.user_schema import UserBase, UserLogin, User, UserLoginFront
+from schemas.user_schema import PaginatedUsersInfo, UserBase, UserLogin, User, UserLoginFront
 from config.db import get_db
-from services.user_service import create_user, login_user
+from services.user_service import create_user, login_user, get_all_users
 
 
 
@@ -20,7 +20,7 @@ user_routes = APIRouter()
 @user_routes.get(
     path="/users",
     tags=["users"],
-    #response_model = List[User],
+    response_model = List[User],
     status_code=status.HTTP_200_OK,
     dependencies=[Depends(get_db)],
     summary="Get all users"
@@ -44,7 +44,8 @@ def get_users():
         - role_id: int
         - specialty_id: int
     """
-    return {"Helo": "world"}
+    users = get_all_users()
+    return users
 
 @user_routes.post(
     path="/users",

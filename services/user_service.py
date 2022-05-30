@@ -1,13 +1,22 @@
 # Python
 from datetime import datetime
+from typing import List
 
 # FastAPI
 from fastapi import HTTPException, status
+
+# SQLAlchemy
+
 
 # Project imports
 from models.user_model import User
 from schemas import user_schema
 from config.db import session
+
+
+
+def get_all_users() -> List[User]:
+    return session.query(User).all()
 
 def create_user(user: user_schema.UserLogin):
 
