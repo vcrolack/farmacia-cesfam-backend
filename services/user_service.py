@@ -4,6 +4,7 @@ from typing import List
 
 # FastAPI
 from fastapi import HTTPException, status
+from fastapi.encoders import jsonable_encoder
 
 # SQLAlchemy
 
@@ -81,3 +82,27 @@ def get_an_user(user_id):
         )
     print(user_id)
     return user
+
+def update_user(user_id: int, user: User):
+    db_user = session.query(User).get(user_id)
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="User doesn't exist"
+        )
+
+    db_user.first_name = user.first_name
+    db_user.second_name = user.second_name
+    db_user.last_name = user.last_name
+    db_user.second_last_name = user.second_last_name
+    db_user.rut = user.rut
+    db_user.email = user.email
+    db_user.role_id = user.role_id
+    db_user.specialty_id = user.specialty_id
+
+    session.commit()
+    
+    return db_user
+
+def delete_user(user_id: int):
+    pass
