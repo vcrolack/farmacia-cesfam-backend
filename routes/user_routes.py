@@ -11,7 +11,7 @@ from fastapi import Body, Path, Query, Form
 # Project imports
 from schemas.user_schema import PaginatedUsersInfo, UserBase, UserLogin, User, UserLoginFront
 from config.db import get_db
-from services.user_service import create_user, login_user, get_all_users
+from services.user_service import create_user, login_user, get_all_users, get_an_user
 
 
 
@@ -46,6 +46,18 @@ def get_users():
     """
     users = get_all_users()
     return users
+
+@user_routes.get(
+    path="/users/{user_id}",
+    tags=["users"],
+    response_model = User,
+    status_code=status.HTTP_200_OK,
+    dependencies=[Depends(get_db)],
+    summary="Get an user"
+)
+def get_user(user_id: int):
+    print(type(user_id))
+    return get_an_user(user_id)
 
 @user_routes.post(
     path="/users",
@@ -84,7 +96,7 @@ async def post_user(user: UserLogin):
 async def login(user: UserLoginFront):
     return login_user(user)
 
-@user_routes.get("/users")
+@user_routes.put("/users/")
 def helloWorld():
     return "Hello World"
 
