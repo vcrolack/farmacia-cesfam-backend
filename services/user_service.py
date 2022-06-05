@@ -105,4 +105,15 @@ def update_user(user_id: int, user: User):
     return db_user
 
 def delete_user(user_id: int):
-    pass
+    user = session.query(User).get(user_id)
+
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="User doesn't exist"
+        )
+    
+    session.delete(user)
+    session.commit()
+
+    return {"detail": "User deleted"}

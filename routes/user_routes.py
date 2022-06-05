@@ -1,17 +1,15 @@
 # Python
 from typing import List, Dict
-import json
 
 # FastAPI
 from fastapi import APIRouter
 from fastapi import Depends
 from fastapi import status
-from fastapi import Body, Path, Query, Form
 
 # Project imports
-from schemas.user_schema import PaginatedUsersInfo, UserBase, UserLogin, User, UserLoginFront
+from schemas.user_schema import UserLogin, User, UserLoginFront
 from config.db import get_db
-from services.user_service import create_user, login_user, get_all_users, get_an_user, update_user
+from services.user_service import create_user, login_user, get_all_users, get_an_user, update_user, delete_user
 
 
 
@@ -105,4 +103,14 @@ async def login(user: UserLoginFront):
     summary="Update an user"
 )
 def update_an_user(user_id: int, user: User):
-    return update_an_user(user_id, user)
+    return update_user(user_id, user)
+
+@user_routes.delete(
+    path="/users/{user_id}",
+    tags=["users"],
+    status_code=status.HTTP_200_OK,
+    dependencies=[Depends(get_db)],
+    summary="Delete an user"
+)
+def delete_an_user(user_id: int):
+    return delete_user(user_id)
