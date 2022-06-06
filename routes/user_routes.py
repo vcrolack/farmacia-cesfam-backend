@@ -1,5 +1,5 @@
 # Python
-from typing import List, Dict
+from typing import List
 
 # FastAPI
 from fastapi import APIRouter
