@@ -1,6 +1,5 @@
 # Python
-from datetime import datetime
-from typing import Optional, List
+from typing import Optional
 
 # FastAPI
 from fastapi import Form
@@ -8,7 +7,6 @@ from fastapi import Form
 # Pydantic
 from pydantic import BaseModel
 from pydantic import EmailStr
-from pydantic import Field
 
 class UserBase(BaseModel):
     #user_id: int = Field(...)

@@ -1,5 +1,4 @@
 # Python
-from datetime import datetime
 from typing import List
 
 # FastAPI
@@ -10,7 +9,7 @@ from models.patient import Patient
 from schemas.patient import Patient as patient_schema
 from config.db import session
 
-def get_patients():
+def get_patients() -> List[Patient]:
     return session.query(Patient).all()
 
 def create_patient(patient: Patient):

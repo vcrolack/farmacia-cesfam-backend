@@ -4,10 +4,6 @@ from typing import List
 
 # FastAPI
 from fastapi import HTTPException, status
-from fastapi.encoders import jsonable_encoder
-
-# SQLAlchemy
-
 
 # Project imports
 from models.user_model import User
@@ -20,8 +16,6 @@ def get_all_users() -> List[User]:
     return session.query(User).all()
 
 def create_user(user: user_schema.UserLogin):
-
-    #get_user = UserModel.filter((UserModel.email == user.email) | (UserModel.rut == user.rut)).first()
     get_user = session.query(User).filter_by(email=user.email, rut=user.rut ).first()
     print(get_user)
     if get_user:
@@ -85,7 +79,7 @@ def get_an_user(user_id):
 
 def update_user(user_id: int, user: User):
     db_user = session.query(User).get(user_id)
-    if not user:
+    if not db_user:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="User doesn't exist"
