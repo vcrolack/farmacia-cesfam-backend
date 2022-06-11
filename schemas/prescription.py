@@ -27,3 +27,6 @@ class Prescription(BaseModel):
     date_prescription: date = Field(...)
     medicament_id: int = Field(...)
     type_medicament_id = Field(...)
+    
+    class Config:
+        orm_mode = True
