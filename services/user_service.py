@@ -98,8 +98,8 @@ def update_user(user_id: int, user: User):
     
     return db_user
 
-def delete_user(user_id: int):
-    user = session.query(User).get(user_id)
+def delete_user(rut: str):
+    user = session.query(User).filter_by(rut=rut).one()
 
     if not user:
         raise HTTPException(

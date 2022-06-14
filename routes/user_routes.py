@@ -106,11 +106,11 @@ def update_an_user(user_id: int, user: User):
     return update_user(user_id, user)
 
 @user_routes.delete(
-    path="/users/{user_id}",
+    path="/users/{rut}",
     tags=["users"],
     status_code=status.HTTP_200_OK,
     dependencies=[Depends(get_db)],
     summary="Delete an user"
 )
-def delete_an_user(user_id: int):
-    return delete_user(user_id)
+def delete_an_user(rut: str):
+    return delete_user(rut)

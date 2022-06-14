@@ -7,9 +7,9 @@ from fastapi import Form
 # Pydantic
 from pydantic import BaseModel
 from pydantic import EmailStr
+from pydantic import Field
 
 class UserBase(BaseModel):
-    #user_id: int = Field(...)
     email: EmailStr = Form(...)
     rut: str = Form(
         ...,
