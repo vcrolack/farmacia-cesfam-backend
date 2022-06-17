@@ -42,7 +42,7 @@ class User(UserBase):
     )
     #created_at: datetime = Field(default=datetime.now())
     role_id: int = Form(...)
-    specialty_id: Optional[int] = Form(...)
+    specialty_id: Optional[int] = Form(default=None)
     
 class UserLogin(User):
     password: str = Form(

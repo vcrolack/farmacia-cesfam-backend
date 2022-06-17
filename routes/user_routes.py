@@ -94,15 +94,15 @@ async def login(user: UserLoginFront):
     return login_user(user)
 
 @user_routes.put(
-    path="/users/{user_id}",
+    path="/users/{rut}",
     tags=["users"],
     status_code=status.HTTP_200_OK,
     response_model=User,
     dependencies=[Depends(get_db)],
     summary="Update an user"
 )
-def update_an_user(user_id: int, user: User):
-    return update_user(user_id, user)
+def update_an_user(rut: str, user: User):
+    return update_user(rut, user)
 
 @user_routes.delete(
     path="/users/{rut}",

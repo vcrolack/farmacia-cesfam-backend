@@ -76,8 +76,8 @@ def get_an_user(rut: str):
         )
     return user
 
-def update_user(user_id: int, user: User):
-    db_user = session.query(User).get(user_id)
+def update_user(rut: str, user: User):
+    db_user = session.query(User).filter_by(rut=rut).one()
     if not db_user:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
