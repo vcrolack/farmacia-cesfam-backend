@@ -46,16 +46,15 @@ def get_users():
     return users
 
 @user_routes.get(
-    path="/users/{user_id}",
+    path="/users/{rut}",
     tags=["users"],
     response_model = User,
     status_code=status.HTTP_200_OK,
     dependencies=[Depends(get_db)],
     summary="Get an user"
 )
-def get_user(user_id: int):
-    print(type(user_id))
-    return get_an_user(user_id)
+def get_user(rut: str):
+    return get_an_user(rut)
 
 @user_routes.post(
     path="/users",

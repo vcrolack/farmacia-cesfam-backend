@@ -67,14 +67,13 @@ def login_user(user: user_schema.UserLoginFront):
 
     return user
 
-def get_an_user(user_id):
-    user = session.query(User).get(user_id)
+def get_an_user(rut: str):
+    user = session.query(User).filter_by(rut=rut).one()
     if not user:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="User doesn't exist"
         )
-    print(user_id)
     return user
 
 def update_user(user_id: int, user: User):
