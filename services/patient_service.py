@@ -52,8 +52,8 @@ def create_patient(patient: Patient):
         address=db_patient.address
     )
 
-def get_patient(patient_id: int):
-    patient = session.query(Patient).get(patient_id)
+def get_patient(rut: str):
+    patient = session.query(Patient).filter_by(rut=rut).one()
     if not patient:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -61,8 +61,8 @@ def get_patient(patient_id: int):
         )
     return patient
 
-def update_patient(patient_id: int, patient: Patient):
-    db_patient = session.query(Patient).get(patient_id)
+def update_patient(rut: str, patient: Patient):
+    db_patient = session.query(Patient).filter_by(rut=rut).one()
     if not db_patient:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -83,8 +83,8 @@ def update_patient(patient_id: int, patient: Patient):
 
     return db_patient
 
-def delete_patient(patient_id: int):
-    patient = session.query(Patient).get(patient_id)
+def delete_patient(rut: str):
+    patient = session.query(Patient).filter_by(rut=rut).one()
 
     if not patient:
         raise HTTPException(

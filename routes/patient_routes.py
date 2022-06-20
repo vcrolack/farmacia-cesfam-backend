@@ -38,33 +38,33 @@ def create_a_patient(patient: Patient):
     return create_patient(patient)
 
 @patient_routes.put(
-    path="/patients/{patient_id}",
+    path="/patients/{rut}",
     tags=["patients"],
     response_model=Patient,
     status_code=status.HTTP_200_OK,
     dependencies=[Depends(get_db)],
     summary="Update an patient"
 )
-def update_a_patient(patient_id: int, patient: Patient):
-    return update_patient(patient_id, patient)
+def update_a_patient(rut: str, patient: Patient):
+    return update_patient(rut, patient)
 
 @patient_routes.get(
-    path="/patients/{patient_id}",
+    path="/patients/{rut}",
     tags=["patients"],
     response_model=Patient,
     status_code=status.HTTP_200_OK,
     dependencies=[Depends(get_db)],
     summary="Get a patient"
 )
-def get_a_patient(patient_id: int):
-    return get_patient(patient_id)
+def get_a_patient(rut: str):
+    return get_patient(rut)
 
 @patient_routes.delete(
-    path="/patients/{patient_id}",
+    path="/patients/{rut}",
     tags=["patients"],
     status_code=status.HTTP_200_OK,
     dependencies=[Depends(get_db)],
     summary="Delete a patient"
 )
-def delete_a_patient(patient_id: int):
-    return delete_patient(patient_id)
+def delete_a_patient(rut: str):
+    return delete_patient(rut)
