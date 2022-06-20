@@ -36,7 +36,7 @@ class Patient(BaseModel):
         min_length=8,
         max_length=9
     )
-    birth_date: date = Form(default=None)
+    birth_date: date = Form(...)
     phone: str = Form(
         ...,
         min_length=9,
