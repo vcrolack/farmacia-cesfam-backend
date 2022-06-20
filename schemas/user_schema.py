@@ -1,5 +1,5 @@
 # Python
-from typing import Optional
+from typing import Optional, Union
 
 # FastAPI
 from fastapi import Form
@@ -42,7 +42,7 @@ class User(UserBase):
     )
     #created_at: datetime = Field(default=datetime.now())
     role_id: int = Form(...)
-    specialty_id: Optional[int] = Form(default=None)
+    specialty_id: Union[int, None] = Form(default=None)
     
 class UserLogin(User):
     password: str = Form(
