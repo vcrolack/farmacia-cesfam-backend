@@ -7,7 +7,7 @@ from fastapi import Depends
 from fastapi import status
 
 # Project imports
-from schemas.patient import Patient
+from schemas.patient import Patient, GetPatient
 from config.db import get_db
 from services.patient_service import get_patients, create_patient, update_patient, get_patient, delete_patient
 
@@ -17,7 +17,7 @@ patient_routes = APIRouter()
 @patient_routes.get(
     path="/patients",
     tags=["patients"],
-    response_model=List[Patient],
+    response_model=List[GetPatient],
     status_code=status.HTTP_200_OK,
     dependencies=[Depends(get_db)],
     summary="Get all patients"
@@ -51,7 +51,7 @@ def update_a_patient(rut: str, patient: Patient):
 @patient_routes.get(
     path="/patients/{rut}",
     tags=["patients"],
-    response_model=Patient,
+    response_model=GetPatient,
     status_code=status.HTTP_200_OK,
     dependencies=[Depends(get_db)],
     summary="Get a patient"
