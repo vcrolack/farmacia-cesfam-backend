@@ -7,7 +7,7 @@ from fastapi import Depends
 from fastapi import status
 
 # Project imports
-from schemas.user_schema import UserLogin, User, UserLoginFront
+from schemas.user_schema import UserLogin, User, UserLoginFront, GetUser
 from config.db import get_db
 from services.user_service import create_user, login_user, get_all_users, get_an_user, update_user, delete_user
 
@@ -18,7 +18,7 @@ user_routes = APIRouter()
 @user_routes.get(
     path="/users",
     tags=["users"],
-    response_model = List[User],
+    response_model = List[GetUser],
     status_code=status.HTTP_200_OK,
     dependencies=[Depends(get_db)],
     summary="Get all users"
@@ -48,7 +48,7 @@ def get_users():
 @user_routes.get(
     path="/users/{rut}",
     tags=["users"],
-    response_model = User,
+    response_model = GetUser,
     status_code=status.HTTP_200_OK,
     dependencies=[Depends(get_db)],
     summary="Get an user"

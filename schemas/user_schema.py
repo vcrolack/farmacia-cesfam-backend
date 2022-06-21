@@ -67,3 +67,6 @@ class UserLoginFront(BaseModel):
         min_length=6,
         max_length=25
     )
+
+class GetUser(User):
+    id: int
