@@ -52,3 +52,5 @@ class Patient(BaseModel):
     class Config:
         orm_mode = True
 
+class GetPatient(Patient):
+    id: int
