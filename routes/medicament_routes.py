@@ -65,5 +65,5 @@ def update_a_medicament(medicament_id: int, medicament: Medicament):
     dependencies=[Depends(get_db)],
     summary="Delete a patient"
 )
-def delete_a_patient(patient_id: int):
-    return delete_medicament(patient_id)
+def delete_a_patient(medicament_id: int):
+    return delete_medicament(medicament_id)
