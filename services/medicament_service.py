@@ -8,9 +8,10 @@ from fastapi import HTTPException, status
 # Project imports
 from models.medicament import Medicament
 from schemas.medicament import Medicament as medicament_schema
+from schemas.medicament import GetMedicament
 from config.db import session
 
-def get_medicaments() -> List[Medicament]:
+def get_medicaments() -> List[GetMedicament]:
     return session.query(Medicament).all()
 
 def create_medicament(medicament: Medicament):

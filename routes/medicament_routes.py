@@ -7,7 +7,7 @@ from fastapi import Depends
 from fastapi import status
 
 # Project imports
-from schemas.medicament import Medicament
+from schemas.medicament import Medicament, GetMedicament
 from config.db import get_db
 from services.medicament_service import get_medicaments, get_medicament, create_medicament, update_medicament, delete_medicament
 
@@ -16,7 +16,7 @@ medicament_routes = APIRouter()
 @medicament_routes.get(
     path="/medicaments",
     tags=["medicaments"],
-    response_model=List[Medicament],
+    response_model=List[GetMedicament],
     status_code=status.HTTP_200_OK,
     dependencies=[Depends(get_db)],
     summary="Get all medicaments"
@@ -28,7 +28,7 @@ def get_all_medicaments():
 @medicament_routes.get(
     path="/medicaments/{medicament_id}",
     tags=["medicaments"],
-    response_model=Medicament,
+    response_model=GetMedicament,
     status_code=status.HTTP_200_OK,
     dependencies=[Depends(get_db)],
     summary="Get a medicament"
