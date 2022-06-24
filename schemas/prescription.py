@@ -33,3 +33,6 @@ class Prescription(BaseModel):
     
     class Config:
         orm_mode = True
+
+class GetPrescription(Prescription):
+    id: int

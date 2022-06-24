@@ -13,6 +13,9 @@ from config.db import session
 def get_prescriptions() -> List[Prescription]:
     return session.query(Prescription).all()
 
+def get_prescriptions_patient(patient_id: int):
+    return session.query(Prescription).filter_by(patient_id=patient_id).all()
+
 def create_prescription(prescription: Prescription):
     
     db_prescription = Prescription(
