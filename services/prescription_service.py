@@ -1,4 +1,5 @@
 # Python
+from datetime import datetime
 from typing import List
 
 # FastAPI
@@ -19,6 +20,8 @@ def create_prescription(prescription: Prescription):
         patient_id=prescription.patient_id,
         medic_name=prescription.medic_name,
         medicament_name=prescription.medicament_id,
+        created_at=datetime.now(),
+        date_prescription=prescription.date_prescription,
         patology=prescription.patology,
         medicament_id=prescription.medicament_id,
         type_medicament_id=prescription.type_medicament_id
@@ -34,6 +37,8 @@ def create_prescription(prescription: Prescription):
         medic_name=db_prescription.medic_name,
         medicament_name=db_prescription.medicament_name,
         patology=db_prescription.patology,
+        date_prescription=db_prescription.date_prescription,
+        created_at=db_prescription.created_at,
         medicament_id=db_prescription.medicament_id,
         type_medicament_id=db_prescription.type_medicament_id
     )

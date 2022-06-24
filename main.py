@@ -10,6 +10,7 @@ from routes.patient_routes import patient_routes
 from routes.medicament_routes import medicament_routes
 from routes.specialty_routes import specialty_routes
 from routes.type_medicament_routes import type_medicament_routes
+from routes.prescription_routes import prescription_routes
 from config.db import engine
 from models import patient, medicament, prescription, role, specialty, type_medicament, user_model
 from models.test import child, father
@@ -49,3 +50,4 @@ app.include_router(patient_routes)
 app.include_router(medicament_routes)
 app.include_router(specialty_routes)
 app.include_router(type_medicament_routes)
+app.include_router(prescription_routes)
