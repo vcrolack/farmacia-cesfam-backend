@@ -7,16 +7,16 @@ from fastapi import Depends
 from fastapi import status
 
 # Project imports
-from schemas.prescription import Prescription
+from schemas.prescription import Prescription, GetPrescription
 from config.db import get_db
-from services.prescription_service import get_prescriptions, get_prescription, update_prescription, create_prescription, delete_prescription
+from services.prescription_service import get_prescriptions, get_prescription, update_prescription, create_prescription, delete_prescription, get_prescriptions_patient
 
 prescription_routes = APIRouter()
 
 @prescription_routes.get(
     path="/prescriptions",
     tags=["prescriptions"],
-    response_model=List[Prescription],
+    response_model=List[GetPrescription],
     status_code=status.HTTP_400_BAD_REQUEST,
     dependencies=[Depends(get_db)],
     summary="Get all prescriptions"
@@ -24,6 +24,17 @@ prescription_routes = APIRouter()
 def get_all_prescriptions():
     prescriptions = get_prescriptions()
     return prescriptions
+
+@prescription_routes.get(
+    path="/prescriptions/patient/{patient_id}",
+    tags=["prescriptions", "patients"],
+    response_model=List[GetPrescription],
+    status_code=status.HTTP_200_OK,
+    dependencies=[Depends(get_db)],
+    summary="Get all prescriptions by patient id"
+)
+def get_all_prescriptions_by_patient(patient_id: int):
+    return get_prescriptions_patient(patient_id)
 
 @prescription_routes.post(
     path="/prescriptions",
