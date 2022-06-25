@@ -59,7 +59,7 @@ async def updated_a_medic_date(medic_date_id: int, medic_date: MedicDate):
   return update_medic_date(medic_date_id, medic_date)
 
 @medic_date_routes.delete(
-  path="/medics-dates",
+  path="/medics-dates/{medic_date_id}",
   tags=["medics-dates"],
   response_model=MedicDate,
   status_code=status.HTTP_200_OK,
