@@ -17,7 +17,7 @@ prescription_routes = APIRouter()
     path="/prescriptions",
     tags=["prescriptions"],
     response_model=List[GetPrescription],
-    status_code=status.HTTP_400_BAD_REQUEST,
+    status_code=status.HTTP_200_OK,
     dependencies=[Depends(get_db)],
     summary="Get all prescriptions"
 )
