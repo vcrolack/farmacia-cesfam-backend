@@ -9,7 +9,7 @@ from fastapi import status
 # Project imports
 from schemas.patient import Patient, GetPatient
 from config.db import get_db
-from services.patient_service import get_patients, create_patient, update_patient, get_patient, delete_patient
+from services.patient_service import get_patients, create_patient, update_patient, get_patient, delete_patient, get_patient_id
 
 
 patient_routes = APIRouter()
@@ -58,6 +58,17 @@ def update_a_patient(rut: str, patient: Patient):
 )
 def get_a_patient(rut: str):
     return get_patient(rut)
+
+@patient_routes.get(
+    path="/patients/id/{patient_id}",
+    tags=["patients"],
+    response_model=GetPatient,
+    status_code=status.HTTP_200_OK,
+    dependencies=[Depends(get_db)],
+    summary="Get a patient by id"
+)
+def get_a_patient_by_id(patient_id: int):
+    return get_patient_id(patient_id)
 
 @patient_routes.delete(
     path="/patients/{rut}",

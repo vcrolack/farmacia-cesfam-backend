@@ -61,6 +61,16 @@ def get_patient(rut: str):
         )
     return patient
 
+def get_patient_id(patient_id: int):
+    db_patient = session.query(Patient).get(patient_id)
+    if not db_patient:
+        raise HTTPException(
+            status_code=status.HTTP_200_OK,
+            detail="Patient doesn't exist"
+        )
+    return db_patient
+
+
 def update_patient(rut: str, patient: Patient):
     db_patient = session.query(Patient).filter_by(rut=rut).one()
     if not db_patient:
