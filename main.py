@@ -12,6 +12,7 @@ from routes.specialty_routes import specialty_routes
 from routes.type_medicament_routes import type_medicament_routes
 from routes.prescription_routes import prescription_routes
 from routes.medic_date_routes import medic_date_routes
+from routes.role_routes import role_routes
 from config.db import engine
 from models import patient, medicament, prescription, role, specialty, type_medicament, user_model, medic_date
 from models.test import child, father
@@ -54,3 +55,4 @@ app.include_router(specialty_routes)
 app.include_router(type_medicament_routes)
 app.include_router(prescription_routes)
 app.include_router(medic_date_routes)
+app.include_router(role_routes)
