@@ -17,7 +17,7 @@ medic_date_routes = APIRouter()
 @medic_date_routes.get(
   path="/medics-dates",
   tags=["medics-dates"],
-  response_model=List[GetMedicDate],
+  
   status_code=status.HTTP_200_OK,
   dependencies=[Depends(get_db)],
   summary="Get all medics dates"

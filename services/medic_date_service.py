@@ -6,11 +6,12 @@ from fastapi import status, HTTPException
 
 # Project imports
 from models.medic_date import MedicDate
+from models.medic_date import Patient
 from schemas.medic_date import MedicDate as medic_date_schema
 from config.db import session
 
-def get_medics_dates() -> List[MedicDate]:
-  return session.query(MedicDate).all()
+def get_medics_dates():
+  return session.query(MedicDate, Patient).filter_by(patient_id=Patient.id).all()
 
 def get_medic_date(medic_date: id):
   medic_date = session.query(MedicDate).get(medic_date)
@@ -70,3 +71,4 @@ def delete_medic_date(medic_date_id: int):
   session.commit()
 
   return {"detail": "Prescription deleted"}
+
