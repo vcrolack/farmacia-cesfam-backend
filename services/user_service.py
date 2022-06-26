@@ -9,11 +9,13 @@ from fastapi import HTTPException, status
 from models.user_model import User
 from schemas import user_schema
 from config.db import session
+from models.role import Role
+from models.specialty import Specialty
 
 
 
-def get_all_users() -> List[User]:
-    return session.query(User).all()
+def get_all_users():
+    return session.query(User, Role, Specialty).filter_by(role_id=Role.id, specialty_id=Specialty.id).all()
 
 def create_user(user: user_schema.UserLogin):
     get_user = session.query(User).filter_by(email=user.email, rut=user.rut ).first()

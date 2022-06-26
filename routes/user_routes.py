@@ -18,7 +18,7 @@ user_routes = APIRouter()
 @user_routes.get(
     path="/users",
     tags=["users"],
-    response_model = List[GetUser],
+
     status_code=status.HTTP_200_OK,
     dependencies=[Depends(get_db)],
     summary="Get all users"
